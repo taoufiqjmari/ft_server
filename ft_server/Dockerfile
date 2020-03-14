@@ -5,8 +5,8 @@ COPY srcs/* ./home/
 
 # PREREQUISITE
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update
-RUN apt-get install -y wget unzip
+RUN apt-get update && apt-get upgrade
+RUN apt-get install -y wget unzip vim
 
 # NGINX
 RUN apt-get install -y nginx
@@ -40,4 +40,4 @@ RUN mv ./home/wp-config.php wordpress
 RUN mv wordpress /var/www/html/
 RUN mv ./home/index.php /var/www/html
 
-ENTRYPOINT ["bash", "./home/run.sh"]
+CMD ["bash", "./home/run.sh"]
